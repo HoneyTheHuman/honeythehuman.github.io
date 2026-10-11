@@ -4,19 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#171020">
+  <meta name="theme-color" content="#101827">
+  <meta name="color-scheme" content="dark">
   <title>hello? | Research Portfolio</title>
 
   <style>
     :root {
-      --background: #171020;
-      --screen: #102019;
-      --green: #a4ffb0;
-      --pink: #ff8edb;
-      --cyan: #86eaff;
-      --cream: #ded5bd;
-      --text: #f8f0ff;
-      --muted: #c0b2ce;
+      --background: #101827;
+      --screen: #09151B;
+      --green: #A4FFB0;
+      --pink: #FF85D5;
+      --cyan: #73E5FF;
+      --cream: #D9D3C2;
+      --text: #F0F3F8;
+      --muted: #ADB9C9;
+      --panel: #151D2D;
+      --panel-light: #1B2639;
+
+      --rainbow: linear-gradient(
+        90deg,
+        #FF595E,
+        #FFCA3A,
+        #8AC926,
+        #36C9F0,
+        #4361EE,
+        #B967FF,
+        #FF595E
+      );
     }
 
     * {
@@ -29,9 +43,11 @@
 
     body {
       margin: 0;
-      background: var(--background);
+      background:
+        radial-gradient(ellipse at 50% 0%, #1B2C45 0%, transparent 55%),
+        var(--background);
       color: var(--text);
-      font-family: "Courier New", monospace;
+      font-family: "Lucida Console", Monaco, "Courier New", monospace;
     }
 
     button, a {
@@ -41,6 +57,11 @@
     button:focus-visible, a:focus-visible {
       outline: 3px solid var(--cyan);
       outline-offset: 5px;
+    }
+
+    ::selection {
+      background: var(--green);
+      color: var(--screen);
     }
 
     /* INTRO */
@@ -72,23 +93,25 @@
       font-size: 12px;
       letter-spacing: 3px;
       margin-bottom: 16px;
+      text-shadow: 0 0 10px #FF85D544;
     }
 
     .monitor {
       background: var(--cream);
-      border: 3px solid #fff0d1;
-      border-radius: 30px 30px 24px 24px;
+      border: 3px solid #F4EBDD;
+      border-radius: 38px 38px 28px 28px;
       padding: 22px 22px 18px;
       box-shadow:
-        0 12px 0 #a69a83,
-        0 22px 50px #0008;
+        inset 0 2px 4px #FFFFFF70,
+        0 12px 0 #A69A83,
+        0 22px 50px #00000088;
       position: relative;
     }
 
     .screen {
       min-height: 315px;
       background: var(--screen);
-      border: 5px solid #b2a78e;
+      border: 5px solid #A8B0A7;
       border-radius: 45px / 28px;
       position: relative;
       overflow: hidden;
@@ -98,11 +121,12 @@
       justify-content: center;
       padding: 30px 18px;
       box-shadow:
-        inset 0 0 30px #000,
-        0 0 20px #9bffb018;
+        inset 0 0 35px #000000,
+        0 0 12px #A4FFB055,
+        0 0 28px #36C9F033;
     }
 
-    /* CRT scanlines and screen glow */
+    /* CRT scanlines and curved-screen glow */
 
     .screen::before {
       content: "";
@@ -113,7 +137,7 @@
       background: repeating-linear-gradient(
         to bottom,
         transparent 0px,
-        #00000008 2px,
+        transparent 2px,
         #00000055 3px,
         transparent 4px
       );
@@ -127,24 +151,25 @@
       background: radial-gradient(
         ellipse at center,
         transparent 40%,
-        #0008 100%
+        #00000099 100%
       );
     }
 
     .screen-top {
-      color: #81bd8b;
+      color: var(--green);
       font-size: 10px;
       letter-spacing: 2px;
       margin-bottom: 22px;
       position: relative;
       z-index: 3;
+      text-shadow: 0 0 8px #A4FFB055;
     }
 
     #dialogue {
       color: var(--green);
       font-size: clamp(16px, 4vw, 24px);
       line-height: 1.7;
-      text-shadow: 0 0 9px #8aff9b70;
+      text-shadow: 0 0 9px #A4FFB070;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       min-height: 85px;
@@ -178,13 +203,18 @@
       border: 1px solid var(--green);
       padding: 11px 22px;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s, transform 0.2s;
+      transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
     }
 
     .choice:hover {
       color: var(--screen);
       background: var(--green);
       transform: translateY(-2px);
+      box-shadow: 0 0 14px #A4FFB055;
     }
 
     .monitor-bottom {
@@ -199,20 +229,20 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #55d88b;
-      box-shadow: 0 0 9px #55d88b;
+      background: #55D88B;
+      box-shadow: 0 0 9px #55D88B;
     }
 
     .monitor-button {
       width: 17px;
       height: 17px;
       border-radius: 50%;
-      background: #a99c83;
-      border: 2px solid #8f826c;
+      background: #A99C83;
+      border: 2px solid #8F826C;
     }
 
     .monitor-caption {
-      color: #685e50;
+      color: #685E50;
       font-size: 10px;
       letter-spacing: 2px;
       margin-top: 13px;
@@ -239,23 +269,14 @@
 
     .rainbow {
       height: 6px;
-      background: linear-gradient(
-        90deg,
-        #ff5964,
-        #ffb347,
-        #fff275,
-        #79ed9b,
-        #73d9ff,
-        #a58aff,
-        #ff8edb
-      );
+      background: var(--rainbow);
       background-size: 200% 100%;
       animation: rainbowMove 3s linear infinite;
     }
 
     .site-header {
       padding: 24px clamp(20px, 6vw, 80px);
-      border-bottom: 1px dashed #5d4a6b;
+      border-bottom: 1px dashed #53637A;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -267,6 +288,7 @@
       color: var(--pink);
       font-size: 17px;
       font-weight: bold;
+      text-shadow: 0 0 12px #FF85D533;
     }
 
     nav {
@@ -279,10 +301,12 @@
       color: var(--muted);
       text-decoration: none;
       font-size: 12px;
+      transition: color 0.2s, text-shadow 0.2s;
     }
 
     nav a:hover {
       color: var(--cyan);
+      text-shadow: 0 0 8px #73E5FF66;
     }
 
     .hero {
@@ -307,6 +331,7 @@
 
     .hero h1 span {
       color: var(--pink);
+      text-shadow: 0 0 22px #FF85D522;
     }
 
     .hero-description {
@@ -326,22 +351,38 @@
 
     .link-button {
       display: inline-block;
-      color: var(--text);
-      border: 1px solid #8a719e;
+      color: var(--green);
+      background: var(--screen);
+      border: 1px solid var(--green);
       padding: 12px 16px;
       text-decoration: none;
       font-size: 12px;
+      transition:
+        color 0.2s,
+        background 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s,
+        transform 0.2s;
     }
 
     .link-button:hover {
-      border-color: var(--pink);
-      color: var(--pink);
+      color: var(--screen);
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 0 14px #A4FFB044;
+      transform: translateY(-2px);
     }
 
     .link-button.primary {
+      color: #101827;
       background: var(--pink);
-      color: #24112b;
       border-color: var(--pink);
+    }
+
+    .link-button.primary:hover {
+      color: #101827;
+      background: #FFB3E6;
+      box-shadow: 0 0 18px #FF85D566;
     }
 
     .section {
@@ -355,6 +396,7 @@
       color: var(--cyan);
       font-size: 24px;
       margin: 0 0 10px;
+      text-shadow: 0 0 12px #73E5FF22;
     }
 
     .section-intro {
@@ -367,19 +409,34 @@
     .card-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 22px;
     }
 
+    /* Rainbow-edged research cards */
+
     .card {
-      border: 1px solid #493951;
-      background: #21182d;
+      position: relative;
+      isolation: isolate;
+      border: 2px solid transparent;
+      border-radius: 3px;
+      background:
+        linear-gradient(var(--panel), var(--panel)) padding-box,
+        var(--rainbow) border-box;
+      background-size: 100% 100%, 300% 100%;
+      background-position: 0 0, 0% 50%;
       padding: 24px;
-      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: 4px 4px 0 #050A12;
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
     }
 
     .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--pink);
+      transform: translateY(-4px);
+      box-shadow:
+        5px 7px 0 #050A12,
+        0 0 18px #73E5FF18;
+      animation: rainbowBorder 3s linear infinite;
     }
 
     .card-tag {
@@ -404,9 +461,10 @@
     }
 
     .about-panel {
-      border: 1px dashed #765b87;
+      border: 1px dashed #71849B;
       padding: clamp(24px, 5vw, 42px);
-      background: #21182d;
+      background: var(--panel);
+      box-shadow: 4px 4px 0 #050A12;
     }
 
     .about-panel p {
@@ -425,7 +483,8 @@
 
     .tag {
       color: var(--pink);
-      border: 1px solid #76516e;
+      border: 1px solid #A35E91;
+      background: #21182D;
       padding: 7px 10px;
       font-size: 11px;
     }
@@ -445,11 +504,26 @@
     footer {
       padding: 25px;
       text-align: center;
-      border-top: 1px dashed #5d4a6b;
+      border-top: 1px dashed #53637A;
       color: var(--muted);
       font-size: 11px;
       line-height: 1.8;
     }
+
+    footer .rainbow {
+      margin-bottom: 22px;
+    }
+
+    footer a {
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--cyan) !important;
+      text-shadow: 0 0 8px #73E5FF66;
+    }
+
+    /* RETRO ANIMATIONS */
 
     @keyframes wakeUp {
       from { opacity: 0; }
@@ -473,6 +547,11 @@
     @keyframes rainbowMove {
       from { background-position: 0% 50%; }
       to { background-position: 200% 50%; }
+    }
+
+    @keyframes rainbowBorder {
+      from { background-position: 0 0, 0% 50%; }
+      to { background-position: 0 0, 200% 50%; }
     }
 
     @keyframes screenGlitch {
@@ -517,8 +596,11 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
       *, *::before, *::after {
-        scroll-behavior: auto !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -562,6 +644,7 @@
           <a href="#about">ABOUT</a>
           <a href="#research">RESEARCH</a>
           <a href="#writing">WRITING</a>
+          <a href="#projects">PROJECTS</a>
           <a href="#contact">CONTACT</a>
         </nav>
       </header>
@@ -578,7 +661,6 @@
         <div class="hero-links">
           <a class="link-button primary" href="#research">EXPLORE MY RESEARCH ↘</a>
           <a class="link-button" href="#about">A LITTLE ABOUT ME</a>
-          <!-- Replace # with your CV PDF URL when you have one -->
           <a class="link-button" href="#contact">GET IN TOUCH</a>
         </div>
       </section>
@@ -692,6 +774,10 @@
 
       <section class="section" id="projects">
         <h2 class="section-heading">// other projects</h2>
+        <p class="section-intro">
+          Community work, engineering activities, and things beyond the lab.
+        </p>
+
         <div class="card-grid">
           <article class="card">
             <div class="card-tag">COMMUNITY / AI LITERACY</div>
@@ -730,7 +816,7 @@
       </section>
 
       <footer>
-        <div class="rainbow" style="margin-bottom: 22px;"></div>
+        <div class="rainbow"></div>
         made with curiosity, questionable amounts of caffeine, and one
         extremely nosy computer.
         <br>
@@ -784,11 +870,13 @@
         const button = document.createElement("button");
         button.className = "choice";
         button.textContent = option.label;
+
         button.addEventListener("click", async () => {
           if (busy) return;
           choices.replaceChildren();
           await option.action();
         });
+
         choices.appendChild(button);
       });
 
