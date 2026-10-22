@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#003366">
+<title>Honey Norfolk | Research Portfolio</title>
+
+<style>
+:root {
+  --bg: #003366;
+  --panel: rgba(0, 35, 75, .94);
+  --panel-light: rgba(0, 45, 88, .85);
+  --text: #e5ecff;
+  --muted: #b4c9e5;
+  --pink: #ff79d7;
+  --purple: #a18aff;
+  --blue: #63d9ff;
+  --border: #527ba5;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background-color: #003366;
+  background-image:
+    radial-gradient(circle, #ffffff 1px, transparent 2px),
+    radial-gradient(circle, #ffffff 1px, transparent 2px),
+    radial-gradient(circle, #ffffff 1px, transparent 2px),
+    radial-gradient(circle, #ffffff 1px, transparent 2px),
+    radial-gradient(circle, #ffffff 1px, transparent 2px);
+  background-size: 97px 103px, 151px 139px, 181px 173px,
+                   127px 157px, 211px 191px;
+  background-position: 0 0, 47px 61px, 89px 29px, 23px 83px, 71px 17px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--pink);
+  text-decoration: none;
+}
+a:hover { color: var(--blue); }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.rainbow {
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    #ff5caa, #ffb65c, #fff06b, #68f5a5,
+    #55dfff, #9380ff, #ff5caa
+  );
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(0, 51, 102, .96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-wrap {
+  max-width: 1180px;
+  min-height: 76px;
+  margin: auto;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  color: var(--pink);
+  font-size: 25px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.brand span { color: var(--blue); }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.tab {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 9px 13px;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.tab:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  background: rgba(255, 121, 215, .14);
+  border-color: var(--pink);
+  color: var(--pink);
+  box-shadow: 0 0 14px rgba(255, 121, 215, .12);
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  width: min(1080px, calc(100% - 36px));
+  margin: 44px auto 65px;
+}
+
+.page {
+  display: none;
+  animation: appear .3s ease;
+}
+.page.active { display: block; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.panel {
+  border: 1px solid #527ba5;
+  border-radius: 20px;
+  padding: clamp(22px, 5vw, 52px);
+  background: rgba(0, 35, 75, .91);
+  box-shadow: 0 12px 55px rgba(0, 0, 0, .16);
+}
+
+h1, h2, h3 {
+  line-height: 1.3;
+  color: var(--pink);
+}
+
+h1 { font-size: clamp(30px, 5vw, 45px); margin: 0 0 10px; }
+h2 { font-size: 27px; margin-top: 0; }
+h3 { font-size: 19px; margin-bottom: 8px; }
+p { margin-top: 8px; }
+.muted { color: var(--muted); }
+
+.underline {
+  width: 100px;
+  height: 3px;
+  margin: 18px 0 30px;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 44px;
+}
+
+.profile { text-align: center; }
+
+.avatar {
+  width: 155px;
+  height: 155px;
+  margin: 0 auto 22px;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--pink);
+  border-radius: 50%;
+  background: radial-gradient(circle, #07518a, #00264f);
+  box-shadow: 0 0 25px rgba(255, 121, 215, .18);
+  font-size: 72px;
+}
+
+.profile h2 { font-size: 25px; margin-bottom: 4px; }
+.profile p { color: var(--muted); margin: 4px 0; }
+
+.profile-links {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+  margin-top: 26px;
+  overflow-wrap: anywhere;
+}
+
+.profile-links a { color: var(--text); }
+.profile-links a:hover { color: var(--pink); }
+
+.interest-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.interest-list li::before {
+  content: "✦ ";
+  color: var(--pink);
+  margin-right: 8px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(0, 45, 88, .75);
+}
+
+.card h3 { margin-top: 0; }
+.card p { color: var(--muted); margin-bottom: 0; }
+.card .meta { font-size: 13px; color: var(--blue); }
+
+.project {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.project:last-child { border-bottom: 0; }
+.project h3 { margin-top: 0; }
+
+.meta {
+  font-size: 13px;
+  color: var(--blue);
+}
+
+.tag {
+  display: inline-block;
+  border: 1px solid #5d78b0;
+  color: #d4caff;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 12px;
+  margin: 5px 4px 0 0;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 17px;
+  border: 1px solid var(--pink);
+  border-radius: 10px;
+  margin: 8px 8px 8px 0;
+  color: var(--pink);
+}
+
+.button-link:hover { background: rgba(255, 121, 215, .12); }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.photo-placeholder {
+  min-height: 150px;
+  border: 1px dashed #527ba5;
+  border-radius: 13px;
+  background: rgba(0, 35, 75, .75);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 15px;
+  color: var(--muted);
+}
+
+.photo-placeholder span {
+  display: block;
+  font-size: 32px;
+}
+
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 22px;
+}
+footer .sparkle { color: var(--pink); }
+
+/* The transparent canvas draws only the animated cats and rainbows. */
+#cat-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* Self-contained loading screen. No image file required. */
+#cat-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #003366;
+  color: #fff;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+
+#cat-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-inner {
+  width: min(500px, 100%);
+  text-align: center;
+}
+
+#loader-art {
+  display: block;
+  width: min(420px, 90vw);
+  height: 170px;
+  margin: 0 auto 14px;
+}
+
+#loader-art svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  image-rendering: pixelated;
+}
+
+.loader-label {
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+.progress {
+  width: min(290px, 80%);
+  height: 13px;
+  border: 2px solid #f8d9f4;
+  border-radius: 999px;
+  margin: 13px auto 8px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg, #ff5caa, #ffb65c, #fff06b,
+    #68f5a5, #55dfff, #9380ff
+  );
+  animation: load 1.8s ease forwards;
+}
+
+@keyframes load { to { width: 100%; } }
+
+@media (max-width: 760px) {
+  .nav-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav { justify-content: flex-start; }
+  .tab { padding: 8px 10px; font-size: 13px; }
+  main { margin-top: 24px; }
+  .home-grid { grid-template-columns: 1fr; gap: 30px; }
+
+  .profile-links {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cards { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="cat-background" aria-hidden="true"></canvas>
+
+<!-- The loading cat is embedded here as SVG, so no external image is needed. -->
+<div id="cat-loader">
+  <div class="loader-inner">
+    <div id="loader-art" role="img" aria-label="Pixel art Nyan Cat loading animation">
+      <svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+        <g>
+          <rect x="0" y="31" width="85" height="8" fill="#ff0000"/>
+          <rect x="0" y="39" width="85" height="8" fill="#ff9900"/>
+          <rect x="0" y="47" width="85" height="8" fill="#ffff00"/>
+          <rect x="0" y="55" width="85" height="8" fill="#33ff00"/>
+          <rect x="0" y="63" width="85" height="8" fill="#00ccff"/>
+          <rect x="0" y="71" width="85" height="8" fill="#6633ff"/>
+        </g>
+
+        <g fill="#ffffff">
+          <rect x="25" y="15" width="4" height="12"/>
+          <rect x="21" y="19" width="12" height="4"/>
+          <rect x="202" y="68" width="4" height="12"/>
+          <rect x="198" y="72" width="12" height="4"/>
+          <rect x="61" y="89" width="4" height="4"/>
+          <rect x="170" y="16" width="4" height="4"/>
+        </g>
+
+        <g stroke="#171323" stroke-width="5" stroke-linejoin="miter">
+          <rect x="63" y="27" width="91" height="57" fill="#c98a54"/>
+          <rect x="68" y="22" width="81" height="57" fill="#ffb7dd"/>
+          <rect x="143" y="39" width="19" height="29" fill="#999999"/>
+          <rect x="151" y="31" width="19" height="19" fill="#999999"/>
+          <rect x="166" y="37" width="23" height="38" fill="#999999"/>
+          <rect x="170" y="30" width="12" height="12" fill="#999999"/>
+          <rect x="181" y="41" width="12" height="12" fill="#999999"/>
+          <rect x="174" y="70" width="12" height="9" fill="#999999"/>
+        </g>
+
+        <g fill="#ff66aa">
+          <rect x="79" y="34" width="5" height="5"/>
+          <rect x="98" y="44" width="5" height="5"/>
+          <rect x="118" y="31" width="5" height="5"/>
+          <rect x="108" y="61" width="5" height="5"/>
+          <rect x="85" y="59" width="5" height="5"/>
+          <rect x="130" y="50" width="5" height="5"/>
+        </g>
+
+        <g fill="#171323">
+          <rect x="171" y="49" width="5" height="7"/>
+          <rect x="184" y="49" width="5" height="7"/>
+          <rect x="177" y="61" width="8" height="4"/>
+          <rect x="168" y="63" width="5" height="4"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="loader-label">loading research files...</div>
+    <div class="progress"><span></span></div>
+  </div>
+</div>
+
+<div class="rainbow"></div>
+
+<header>
+  <div class="nav-wrap">
+    <a class="brand" href="#home" aria-label="Home">honey<span>.exe</span> ✦</a>
+    <nav aria-label="Main navigation">
+      <button class="tab active" data-page="home">⌂ Home</button>
+      <button class="tab" data-page="research">⚗ Research</button>
+      <button class="tab" data-page="education">▤ Education</button>
+      <button class="tab" data-page="other">✦ Other Interesting Things</button>
+      <button class="tab" data-page="cv">▤ CV</button>
+      <button class="tab" data-page="posts">▣ Posts / Pictures</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="page active" id="home">
+    <div class="panel">
+      <div class="home-grid">
+        <aside class="profile">
+          <div class="avatar" aria-label="Pixel cat avatar">🐈‍⬛</div>
+          <h2>Hi, I'm<br>Honey Norfolk</h2>
+
+          <div class="profile-links">
+            <a href="mailto:YOUR-EMAIL@example.com">✉ Email</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">↗ LinkedIn</a>
+            <a href="https://github.com/" target="_blank" rel="noopener">⌘ GitHub</a>
+          </div>
+        </aside>
+
+        <div>
+          <h1>Home</h1>
+          <div class="underline"></div>
+
+          <h3>About Me</h3>
+          <p>
+            I'm a Robotics Engineering and Sociology student interested in
+            human-centered robotics, artificial intelligence, and the ways
+            technology shapes society. My work brings together technical
+            research and social questions about how people experience,
+            understand, and live alongside intelligent systems.
+          </p>
+
+          <p>
+            I'm especially interested in how robots influence human decisions,
+            how people respond to robots in social settings, and how these
+            systems can be designed and governed responsibly.
+          </p>
+
+          <h3>Research Interests</h3>
+          <ul class="interest-list">
+            <li>Human-Robot Interaction (HRI)</li>
+            <li>Social Robotics and Human Behavior</li>
+            <li>AI, Authorship, and Education</li>
+            <li>Robotics Policy, Ethics, and Governance</li>
+            <li>Technology and Public Service</li>
+          </ul>
+
+          <h3>What I'm Working Toward</h3>
+          <p>
+            I want to understand not only what robots can do, but whether
+            people want them in their lives, why they respond to them as
+            they do, and how those systems should be designed and governed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="page" id="research">
+    <div class="panel">
+      <h1>Research</h1>
+      <p class="muted">Projects exploring people, intelligent systems, and society.</p>
+      <div class="underline"></div>
+
+      <article class="project">
+        <p class="meta">HUMAN-ROBOT INTERACTION · OREGON STATE UNIVERSITY REU</p>
+        <h3>Human Choices in Group Interaction with Social Robots</h3>
+        <p>
+          Investigated how people engage with a social robot during a group
+          moral decision-making task, examining robot personality conditions
+          and participants' choices to interact with the robot or other people.
+        </p>
+        <span class="tag">HRI</span>
+        <span class="tag">Social Robotics</span>
+        <span class="tag">Human Behavior</span>
+      </article>
+
+      <article class="project">
+        <p class="meta">SOCIAL ROBOTICS · PROCEDURAL GUIDANCE</p>
+        <h3>Social Robots for Procedural Guidance</h3>
+        <p>
+          Studied how a robot's guidance may affect people completing
+          procedural tasks, including individual and group settings,
+          time pressure, errors, trust, and task performance.
+        </p>
+        <span class="tag">Robotics</span>
+        <span class="tag">Trust</span>
+        <span class="tag">Human Factors</span>
+      </article>
+
+      <article class="project">
+        <p class="meta">AI AND WRITING · UNDERGRADUATE RESEARCH</p>
+        <h3>“AI Can't Write Like That!”</h3>
+        <p>
+          Examined how writing style relates to readers' ability to distinguish
+          human-written text from AI-generated text across different writing
+          contexts.
+        </p>
+        <p class="muted">
+          Accepted by the University of Central Arkansas Journal for
+          Undergraduate Research and Advocacy (JURA).
+        </p>
+        <span class="tag">Generative AI</span>
+        <span class="tag">Authorship</span>
+        <span class="tag">Writing</span>
+      </article>
+
+      <article class="project">
+        <p class="meta">AI IN EDUCATION</p>
+        <h3>AI Use, Teaching, and Academic Integrity</h3>
+        <p>
+          Explored how students and educators navigate AI use, academic
+          integrity, classroom expectations, and institutional support.
+        </p>
+        <span class="tag">Education</span>
+        <span class="tag">AI Literacy</span>
+        <span class="tag">Policy</span>
+      </article>
+
+      <p class="muted">
+        More details, publications, posters, and project materials can be
+        added as links become available.
+      </p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="page" id="education">
+    <div class="panel">
+      <h1>Education</h1>
+      <div class="underline"></div>
+
+      <article class="project">
+        <p class="meta">EXPECTED GRADUATION · MAY 2027</p>
+        <h3>University of Central Arkansas</h3>
+        <p>Double major in Robotics Engineering and Sociology</p>
+        <p class="muted">Minor in Economics</p>
+      </article>
+
+      <h3>Academic Interests</h3>
+      <p>
+        Robotics, artificial intelligence, human-robot interaction,
+        technology policy, ethics, economics, and sociology.
+      </p>
+    </div>
+  </section>
+
+  <!-- OTHER INTERESTING THINGS -->
+  <section class="page" id="other">
+    <div class="panel">
+      <h1>Other Interesting Things</h1>
+      <p class="muted">Projects and experiences beyond my research papers.</p>
+      <div class="underline"></div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>⚡ Robotics & Engineering</h3>
+          <p>
+            Robotics projects, engineering experiments, electronics,
+            programming, and things I'm learning by building them.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>✧ AI Literacy & Education</h3>
+          <p>
+            Helping people understand AI, ask better questions about it,
+            and think critically about its uses and limitations.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>⚖ Technology Policy</h3>
+          <p>
+            Exploring how AI and automated systems affect public services,
+            communities, accountability, and governance.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>♡ Leadership & Outreach</h3>
+          <p>
+            Student organizations, mentoring, STEM outreach, and creating
+            opportunities for people to participate in technology.
+          </p>
+        </article>
+      </div>
+
+      <h2 style="margin-top:38px">Awards & Recognition</h2>
+      <ul class="interest-list">
+        <li>Shepherd Award, Fall 2025</li>
+        <li>Second Place, AURS STEM Communicator Award</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section class="page" id="cv">
+    <div class="panel">
+      <h1>Curriculum Vitae</h1>
+      <p class="muted">Research, education, experience, and selected accomplishments.</p>
+      <div class="underline"></div>
+
+      <h3>Download my CV</h3>
+      <p>
+        Upload your CV PDF into a folder named <code>files</code> in your
+        repository and name the file <code>cv.pdf</code>.
+      </p>
+      <a class="button-link" href="files/cv.pdf">↓ View / Download CV (PDF)</a>
+
+      <h3 style="margin-top:35px">Education</h3>
+      <article class="project">
+        <h3>University of Central Arkansas</h3>
+        <p>Robotics Engineering and Sociology, with a minor in Economics</p>
+        <p class="muted">Expected graduation: May 2027</p>
+      </article>
+
+      <h3>CV Sections</h3>
+      <p class="muted">
+        Your full CV can include education, research experience, publications,
+        presentations, technical skills, awards, leadership, and service.
+      </p>
+    </div>
+  </section>
+
+  <!-- POSTS / PICTURES -->
+  <section class="page" id="posts">
+    <div class="panel">
+      <h1>Posts / Pictures</h1>
+      <p class="muted">Research updates, events, projects, and life between deadlines.</p>
+      <div class="underline"></div>
+
+      <article class="project">
+        <p class="meta">RESEARCH UPDATE · ADD DATE</p>
+        <h3>What I'm Exploring Right Now</h3>
+        <p>
+          Use this space for short updates about a new project, an interesting
+          research question, a presentation, or something you learned in the lab.
+        </p>
+      </article>
+
+      <h3>Picture Gallery</h3>
+      <p class="muted">
+        Upload pictures into an <code>images</code> folder in your repository.
+        Replace the placeholders below with your actual images.
+      </p>
+
+      <div class="photo-grid">
+        <div class="photo-placeholder">
+          <div><span>🤖</span>Robotics project photo</div>
+        </div>
+        <div class="photo-placeholder">
+          <div><span>🔬</span>Research or lab photo</div>
+        </div>
+        <div class="photo-placeholder">
+          <div><span>🌈</span>Conference or event photo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="rainbow" style="margin-bottom:20px"></div>
+  <span class="sparkle">✦</span>
+  Built with curiosity, robots, and a little cosmic chaos.
+  <span class="sparkle">✦</span>
+</footer>
+
+<script>
+/* TAB NAVIGATION */
+
+const tabs = document.querySelectorAll(".tab");
+const pages = document.querySelectorAll(".page");
+
+function showPage(pageId, updateHash = true) {
+  const target = document.getElementById(pageId);
+  if (!target || !target.classList.contains("page")) return;
+
+  pages.forEach(page => {
+    page.classList.toggle("active", page.id === pageId);
+  });
+
+  tabs.forEach(tab => {
+    const selected = tab.dataset.page === pageId;
+    tab.classList.toggle("active", selected);
+    tab.setAttribute("aria-pressed", String(selected));
+  });
+
+  if (updateHash) {
+    history.replaceState(null, "", "#" + pageId);
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => showPage(tab.dataset.page));
+});
+
+function loadHashPage() {
+  const pageId = window.location.hash.slice(1) || "home";
+  if (document.getElementById(pageId)?.classList.contains("page")) {
+    showPage(pageId, false);
+  } else {
+    showPage("home", false);
+  }
+}
+
+window.addEventListener("hashchange", loadHashPage);
+loadHashPage();
+
+/* SELF-DRAWN PIXEL CATS */
+
+const backgroundCanvas = document.getElementById("cat-background");
+const bg = backgroundCanvas.getContext("2d");
+
+const rainbowColors = [
+  "#ff0000",
+  "#ff9900",
+  "#ffff00",
+  "#33ff00",
+  "#00ccff",
+  "#6633ff"
+];
+
+function drawCat(ctx, x, y, scale, frame) {
+  ctx.save();
+  ctx.translate(Math.round(x), Math.round(y));
+  ctx.scale(scale, scale);
+
+  const p = 4;
+
+  function px(col, row, color, w = 1, h = 1) {
+    ctx.fillStyle = color;
+    ctx.fillRect(col * p, row * p, w * p, h * p);
+  }
+
+  const outline = "#171323";
+  const gray = "#999999";
+  const lightGray = "#dddddd";
+  const pink = "#ff99cc";
+  const frosting = "#ffb7dd";
+  const brown = "#75452d";
+  const crust = "#c98a54";
+
+  /* Pop-tart body */
+  px(0, 4, outline, 12, 8);
+  px(-1, 5, outline, 1, 6);
+  px(12, 5, outline, 1, 6);
+  px(1, 5, crust, 10, 6);
+  px(2, 5, "#e3a66d", 8, 1);
+  px(2, 10, brown, 8, 1);
+
+  /* Pink frosting */
+  px(2, 6, pink, 8, 4);
+  px(3, 5, frosting, 6, 1);
+  px(3, 10, pink, 6, 1);
+
+  /* Sprinkles */
+  px(3, 7, "#ffffff");
+  px(5, 8, "#ffff66");
+  px(7, 6, "#ffffff");
+  px(8, 9, "#66ffff");
+  px(4, 9, "#ff66aa");
+  px(9, 7, "#ffffff");
+  px(6, 7, "#ff66aa");
+  px(3, 9, "#ffff66");
+
+  /* Cat head outline */
+  px(10, 2, outline, 7, 8);
+  px(11, 1, outline, 2, 2);
+  px(15, 1, outline, 2, 2);
+  px(10, 3, outline, 2, 2);
+  px(15, 3, outline, 2, 2);
+
+  /* Gray head */
+  px(11, 2, gray, 5, 7);
+  px(12, 1, gray, 1, 2);
+  px(15, 1, gray, 1, 2);
+  px(11, 3, lightGray, 1, 4);
+  px(12, 3, gray, 4, 4);
+
+  /* Pink inner ears */
+  px(12, 2, "#ffb6c8");
+  px(15, 2, "#ffb6c8");
+
+  /* Face */
+  px(12, 4, outline);
+  px(15, 4, outline);
+  px(13, 6, "#ff8baa", 2, 1);
+  px(12, 7, outline);
+  px(15, 7, outline);
+
+  /* Feet with a small walking animation */
+  const footOffset = frame % 2 === 0 ? 0 : 1;
+  px(2, 12 + footOffset, outline, 2, 2);
+  px(5, 12 - footOffset, outline, 2, 2);
+  px(9, 12 + footOffset, outline, 2, 2);
+  px(2, 12 + footOffset, gray, 2, 1);
+  px(5, 12 - footOffset, gray, 2, 1);
+  px(9, 12 + footOffset, gray, 2, 1);
+
+  /* Tiny sparkle */
+  if (frame % 3 === 0) {
+    px(19, 3, "#ffffff");
+    px(18, 4, "#ffffff", 3, 1);
+    px(19, 5, "#ffffff");
+  }
+
+  ctx.restore();
+}
+
+/* A single clean rainbow trail behind each cat. */
+function drawRainbowTrail(ctx, x, y, trailWidth, trailHeight, offset) {
+  const stripeHeight = trailHeight / rainbowColors.length;
+  const tileWidth = 24;
+
+  ctx.save();
+  ctx.imageSmoothingEnabled = false;
+
+  for (let i = 0; i < rainbowColors.length; i++) {
+    ctx.fillStyle = rainbowColors[i];
+
+    for (
+      let tileX = x - (offset % tileWidth) - tileWidth;
+      tileX < x + trailWidth;
+      tileX += tileWidth
+    ) {
+      ctx.fillRect(
+        Math.round(tileX),
+        Math.round(y + i * stripeHeight),
+        tileWidth,
+        Math.ceil(stripeHeight)
+      );
+    }
+  }
+
+  ctx.restore();
+}
+
+let width = 0;
+let height = 0;
+let animationFrame = 0;
+let animationStarted = false;
+
+function resizeCanvases() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  width = window.innerWidth;
+  height = window.innerHeight;
+
+  backgroundCanvas.width = Math.floor(width * dpr);
+  backgroundCanvas.height = Math.floor(height * dpr);
+  backgroundCanvas.style.width = width + "px";
+  backgroundCanvas.style.height = height + "px";
+
+  bg.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+/*
+  All four cats stay near the left and right screen edges.
+  None are deliberately placed in the center of the content.
+  Their vertical positions adapt to the current screen size.
+*/
+function drawBackgroundCats() {
+  bg.clearRect(0, 0, width, height);
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const t = reducedMotion ? 0 : animationFrame;
+  const frame = Math.floor(t / 8);
+
+  const catWidth = 21 * 4;
+  const edgePadding = 8;
+
+  const catPositions = [
+    {
+      x: edgePadding,
+      y: height * 0.16 + Math.sin(t * 0.035) * 9,
+      scale: 0.92,
+      direction: 1,
+      phase: 0
+    },
+    {
+      x: width - catWidth * 0.92 - edgePadding,
+      y: height * 0.36 + Math.sin(t * 0.029 + 2) * 11,
+      scale: 0.92,
+      direction: -1,
+      phase: 2
+    },
+    {
+      x: edgePadding,
+      y: height * 0.65 + Math.sin(t * 0.031 + 1) * 10,
+      scale: 0.82,
+      direction: 1,
+      phase: 6
+    },
+    {
+      x: width - catWidth * 0.76 - edgePadding,
+      y: height * 0.83 + Math.sin(t * 0.026 + 4) * 8,
+      scale: 0.76,
+      direction: -1,
+      phase: 4
+    }
+  ];
+
+  catPositions.forEach(cat => {
+    bg.save();
+
+    bg.translate(cat.x, cat.y);
+
+    if (cat.direction < 0) {
+      bg.scale(-1, 1);
+    }
+
+    /* Trail is drawn first, with no opaque rectangle behind it. */
+    drawRainbowTrail(
+      bg,
+      -66,
+      20,
+      64,
+      24,
+      t * 0.65 + cat.phase * 12
+    );
+
+    drawCat(bg, 0, 0, cat.scale, frame + cat.phase);
+    bg.restore();
+  });
+
+  animationFrame++;
+
+  if (!reducedMotion) {
+    requestAnimationFrame(drawBackgroundCats);
+  }
+}
+
+window.addEventListener("resize", resizeCanvases);
+resizeCanvases();
+
+if (!animationStarted) {
+  animationStarted = true;
+  drawBackgroundCats();
+}
+
+/* LOADING INTRO */
+
+const loader = document.getElementById("cat-loader");
+let loaderHidden = false;
+
+function hideLoader() {
+  if (loaderHidden) return;
+  loaderHidden = true;
+  loader.classList.add("hidden");
+}
+
+window.addEventListener("load", () => {
+  setTimeout(hideLoader, 1900);
+});
+
+/* Fallback in case a page resource takes too long to load. */
+setTimeout(hideLoader, 3500);
+</script>
+
+</body>
+</html>
