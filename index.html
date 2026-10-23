@@ -276,30 +276,28 @@ p { margin-top: 8px; }
   margin-top: 24px;
 }
 
-.photo-placeholder {
-  min-height: 150px;
-  border: 1px dashed #527ba5;
+.photo-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
   border-radius: 13px;
   background: rgba(0, 35, 75, .75);
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 15px;
-  color: var(--muted);
-  overflow: hidden;
 }
 
-.photo-placeholder img {
+.photo-card img {
   width: 100%;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
   display: block;
-  border-radius: 8px;
 }
 
-.photo-placeholder span {
-  display: block;
-  font-size: 32px;
+.photo-card div {
+  padding: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.photo-card span {
+  margin-right: 5px;
 }
 
 footer {
@@ -661,28 +659,39 @@ footer .sparkle { color: var(--pink); }
         </p>
       </article>
 
-      <h3>Picture Gallery</h3>
-      <p class="muted">
-        Upload pictures into an <code>images</code> folder in your repository.
-        Replace the placeholders below with your actual images.
-      </p>
+ <h3>Picture Gallery</h3>
+<p class="muted">
+  A few moments from my adventures in research and beyond!
+</p>
 
-      <div class="photo-grid">
-        <div class="UCAcollectsstateeclipsedata.jpg">
-          <div><span>🤖</span>Mom! I am in the Newspaper - 2023</div>
-        </div>
-        <div class="ArkansasDemocratStudentHighlight.jpg">
-          <div><span>🔬</span>In the news..again?!</div>
-        </div>
-        <div class="UCAcollectsstateeclipsedata.jpg">
-          <div><span>🌈</span>Mom! I am in the Newspaper - 2023</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="photo-grid">
+  <div class="photo-card">
+    <img
+      src="images/UCAcollectsstateeclipsedata.jpg"
+      alt="UCA collecting state eclipse data"
+    >
+    <div><span>🤖</span> Mom! I am in the Newspaper - 2023</div>
+  </div>
+
+  <div class="photo-card">
+    <img
+      src="images/ArkansasDemocratStudentHighlight.jpg"
+      alt="Student highlight in the Arkansas Democrat"
+    >
+    <div><span>🔬</span> In the news... again?!</div>
+  </div>
+
+  <div class="photo-card">
+    <img
+      src="images/UCAcollectsstateeclipsedata.jpg"
+      alt="UCA eclipse data collection"
+    >
+    <div><span>🌈</span> Mom! I am in the Newspaper - 2023</div>
+  </div>
+</div>
+</section>
 
 </main>
-
 <footer>
   <div class="rainbow" style="margin-bottom:20px"></div>
   <span class="sparkle">✦</span>
