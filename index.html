@@ -899,37 +899,37 @@ function drawBackgroundCats() {
   ).matches;
 
   const t = reducedMotion ? 0 : animationFrame;
-  const frame = Math.floor(t / 8);
+  const frame = Math.floor(t / 18);
 
-  const catWidth = 21 * 4;
+  const catWidth = 21 * 5;
   const edgePadding = 8;
 
   const catPositions = [
     {
       x: edgePadding,
       y: height * 0.16 + Math.sin(t * 0.035) * 9,
-      scale: 0.92,
+      scale: 1.1,
       direction: 1,
       phase: 0
     },
     {
       x: width - catWidth * 0.92 - edgePadding,
       y: height * 0.36 + Math.sin(t * 0.029 + 2) * 11,
-      scale: 0.92,
+      scale: 1.1,
       direction: -1,
       phase: 2
     },
     {
       x: edgePadding,
       y: height * 0.65 + Math.sin(t * 0.031 + 1) * 10,
-      scale: 0.82,
+      scale: 0.98,
       direction: 1,
       phase: 6
     },
     {
       x: width - catWidth * 0.76 - edgePadding,
       y: height * 0.83 + Math.sin(t * 0.026 + 4) * 8,
-      scale: 0.76,
+      scale: 0.92,
       direction: -1,
       phase: 4
     }
