@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,6 +170,7 @@ p { margin-top: 8px; }
 
 .profile { text-align: center; }
 
+/* Profile picture: fixed circular container */
 .avatar {
   width: 155px;
   height: 155px;
@@ -177,9 +179,18 @@ p { margin-top: 8px; }
   place-items: center;
   border: 3px solid var(--pink);
   border-radius: 50%;
+  overflow: hidden;
   background: radial-gradient(circle, #07518a, #00264f);
   box-shadow: 0 0 25px rgba(255, 121, 215, .18);
   font-size: 72px;
+}
+
+/* Keep the profile image inside the avatar */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .profile h2 { font-size: 25px; margin-bottom: 4px; }
@@ -275,6 +286,15 @@ p { margin-top: 8px; }
   text-align: center;
   padding: 15px;
   color: var(--muted);
+  overflow: hidden;
+}
+
+.photo-placeholder img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
 }
 
 .photo-placeholder span {
