@@ -257,7 +257,36 @@ p { margin-top: 8px; }
   font-size: 12px;
   margin: 5px 4px 0 0;
 }
+  
+.research-status {
+  display: inline-block;
+  padding: 4px 11px;
+  margin: 5px 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
 
+.status-ongoing {
+  color: var(--blue);
+  border-color: var(--blue);
+  background: rgba(99, 217, 255, 0.08);
+}
+
+.status-writing {
+  color: var(--purple);
+  border-color: var(--purple);
+  background: rgba(161, 138, 255, 0.08);
+}
+
+.status-completed {
+  color: #8df0b0;
+  border-color: #8df0b0;
+  background: rgba(141, 240, 176, 0.08);
+}
+  
 .button-link {
   display: inline-block;
   padding: 10px 17px;
@@ -521,7 +550,11 @@ footer .sparkle { color: var(--pink); }
 
         <article class="project">
         <p class="meta">UNDERGRADUATE RESEARCH</p>
+        
         <h3>The Natural State of Mind: How Community Understanding of AI Shapes Public Concerns and Policy Priorities in Arkansas</h3>
+           <span class="research-status status-ongoing">
+           Ongoing
+           </span>
         <p>
          Working with TechTonic Justice, a local nonprofit organization, to teach AI literacy courses to Arkansas communities 
          while examining how learning about AI influences residents' concerns and how their perspectives can inform state policy decisions.
@@ -534,6 +567,9 @@ footer .sparkle { color: var(--pink); }
       <article class="project">
         <p class="meta">OREGON STATE UNIVERSITY REU: ROBOTS IN THE REAL WORLD</p>
         <h3>Push It (Real Good): Examining Human Choices to Engage Robots in Group Interaction</h3>
+         <span class="research-status status-completed">
+          Completed
+         </span>
         <p>
           Led multiple pilot studies investigating the research question: In what ways are robots actively included in group conversations, and what factors shape people’s willingness to do so? 
           Built custom ROS-based code enabling Quori to listen, transcribe, and respond to participants through button-press interactions, while logging responses and behaviors. 
@@ -548,6 +584,9 @@ footer .sparkle { color: var(--pink); }
       <article class="project">
         <p class="meta">UNDERGRADUATE RESEARCH</p>
         <h3>“‘AI can’t write like that!’: A Test of People's Ability to Differentiate Between Human and AI-Generated Text"</h3>
+        <span class="research-status status-completed">
+          Published
+         </span>
         <p>
           Examined how four different writing styles influences readers' ability to distinguish human-written text from AI-generated text across different contexts, 
           and what this suggests about how AI is changing our cultural understanding of human authorship and originality.
@@ -565,6 +604,9 @@ footer .sparkle { color: var(--pink); }
       <article class="project">
         <p class="meta">UNDERGRADUATE RESEARCH</p>
         <h3>“The Machine Didn’t Cheat: Students, Faculty, and the Human Problem”</h3>
+         <span class="research-status status-waiting">
+          Manuscript in Progress
+         </span>
         <p>
           Examines how faculty (pedagogy and workload), students (learning habits and tool adoption), 
           and administrators (policy, compliance, and strategy) view and adapt to generative AI tools.
