@@ -462,7 +462,8 @@ p { margin-top: 8px; }
   .photo-modal-story {
     padding: 18px;
 }
-
+}
+  
 footer {
   position: relative;
   z-index: 2;
@@ -569,7 +570,9 @@ footer .sparkle { color: var(--pink); }
   .cards { grid-template-columns: 1fr; }
   .photo-grid {
     grid-template-columns: 1fr;
+   }
 }
+  
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -913,6 +916,7 @@ footer .sparkle { color: var(--pink); }
 </footer>
 
 <script>
+
 /* TAB NAVIGATION */
 
 const tabs = document.querySelectorAll(".tab");
@@ -936,7 +940,7 @@ function showPage(pageId, updateHash = true) {
     history.replaceState(null, "", "#" + pageId);
   }
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo(0, 0);
 }
 
 tabs.forEach(tab => {
@@ -945,6 +949,7 @@ tabs.forEach(tab => {
 
 function loadHashPage() {
   const pageId = window.location.hash.slice(1) || "home";
+
   if (document.getElementById(pageId)?.classList.contains("page")) {
     showPage(pageId, false);
   } else {
