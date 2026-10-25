@@ -298,6 +298,7 @@ p { margin-top: 8px; }
 
 .button-link:hover { background: rgba(255, 121, 215, .12); }
 
+
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -306,10 +307,28 @@ p { margin-top: 8px; }
 }
 
 .photo-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 13px;
-  background: rgba(0, 35, 75, .75);
+  background: #00234b;
+  color: var(--text);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.photo-card:hover,
+.photo-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--pink);
+  box-shadow: 0 0 22px #ff79d744;
+  outline: none;
 }
 
 .photo-card img {
@@ -317,17 +336,131 @@ p { margin-top: 8px; }
   height: 320px;
   object-fit: contain;
   display: block;
-  background: rgba(0, 15, 35, 0.7);
+  background: #000f23;
+  transition: transform 0.3s ease;
 }
 
-.photo-card div {
-  padding: 12px;
+.photo-card:hover img {
+  transform: scale(1.04);
+}
+
+.photo-caption {
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+}
+
+.photo-caption strong {
+  color: var(--pink);
+}
+
+.photo-caption span {
   color: var(--muted);
-  text-align: center;
+  font-size: 13px;
 }
 
-.photo-card span {
-  margin-right: 5px;
+.photo-hover {
+  padding: 0 14px 14px;
+  color: var(--blue);
+  font-size: 13px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.25s ease, max-height 0.25s ease;
+}
+
+.photo-card:hover .photo-hover,
+.photo-card:focus-visible .photo-hover {
+  opacity: 1;
+  max-height: 50px;
+}
+
+/* Full-size picture and story popup */
+.photo-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  padding: 24px;
+  overflow-y: auto;
+  background: #000d20eF;
+  backdrop-filter: blur(8px);
+  place-items: center;
+}
+
+.photo-modal.open {
+  display: grid;
+}
+
+.photo-modal-content {
+  position: relative;
+  width: min(850px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--pink);
+  border-radius: 18px;
+  background: #00234b;
+  box-shadow: 0 0 35px #ff79d733;
+  animation: appear 0.25s ease;
+}
+
+.photo-modal-content > img {
+  display: block;
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  background: #000f23;
+}
+
+.photo-modal-story {
+  padding: 22px 28px 28px;
+}
+
+.photo-modal-story h2 {
+  margin-bottom: 10px;
+}
+
+.photo-modal-story p:last-child {
+  color: var(--muted);
+}
+
+.photo-modal-close {
+  position: sticky;
+  top: 10px;
+  float: right;
+  z-index: 2;
+  margin: 10px 10px -48px 0;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--pink);
+  border-radius: 50%;
+  background: #003366;
+  color: var(--pink);
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.photo-modal-close:hover {
+  background: var(--pink);
+  color: #003366;
+}
+
+@media (max-width: 760px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-card img {
+    height: 260px;
+  }
+
+  .photo-modal {
+    padding: 12px;
+  }
+
+  .photo-modal-story {
+    padding: 18px;
 }
 
 footer {
@@ -434,7 +567,8 @@ footer .sparkle { color: var(--pink); }
   }
 
   .cards { grid-template-columns: 1fr; }
-  .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .photo-grid {
+    grid-template-columns: 1fr;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -692,28 +826,80 @@ footer .sparkle { color: var(--pink); }
 </p>
 
 <div class="photo-grid">
-  <div class="photo-card">
-    <img
-      src="images/UCAcollectsstateeclipsedata.jpg"
-      alt="UCA collecting state eclipse data"
-    >
-    <div>Mom! I am in the Newspaper - 2023</div>
-  </div>
 
-  <div class="photo-card">
-    <img
-      src="images/ArkansasDemocratStudentHighlight.jpg"
-      alt="Student highlight in the Arkansas Democrat"
-    >
-    <div>In the news... again?! - 2024</div>
-  </div>
+  <button class="photo-card"
+          type="button"
+          data-title="Mom! I Am in the Newspaper!"
+          data-year="2023"
+          data-story="I participated in UCA's statewide eclipse data collection effort. This project gave me the opportunity to contribute to a research effort that connected our university with communities across Arkansas."
+          aria-label="View story: Mom! I Am in the Newspaper!">
 
-  <div class="photo-card">
-    <img
-      src="images/UCAcollectsstateeclipsedata.jpg"
-      alt="UCA eclipse data collection"
-    >
-    <div> Mom! I am in the Newspaper - 2023</div>
+    <img src="images/UCAcollectsstateeclipsedata.jpg"
+         alt="UCA collecting statewide eclipse data">
+
+    <div class="photo-caption">
+      <strong>Mom! I Am in the Newspaper!</strong>
+      <span>2023 · Click to read the story ↗</span>
+    </div>
+    <div class="photo-hover">✦ A little research history...</div>
+  </button>
+
+  <button class="photo-card"
+          type="button"
+          data-title="In the News... Again?!"
+          data-year="2024"
+          data-story="I was featured in the Arkansas Democrat for my work and experiences as a student. Add a few details here about the article and what the recognition meant to you."
+          aria-label="View story: In the News... Again?!">
+
+    <img src="images/ArkansasDemocratStudentHighlight.jpg"
+         alt="Student highlight in the Arkansas Democrat">
+
+    <div class="photo-caption">
+      <strong>In the News... Again?!</strong>
+      <span>2024 · Click to read the story ↗</span>
+    </div>
+    <div class="photo-hover">✦ Another newspaper moment...</div>
+  </button>
+
+  <button class="photo-card"
+          type="button"
+          data-title="Mom! I Am in the Newspaper!"
+          data-year="2023"
+          data-story="Another look back at UCA's statewide eclipse data collection. Replace this text with a different memory or detail if this is a separate photograph from the same event."
+          aria-label="View story: Eclipse research">
+
+    <img src="images/UCAcollectsstateeclipsedata.jpg"
+         alt="UCA eclipse data collection">
+
+    <div class="photo-caption">
+      <strong>Eclipse Research</strong>
+      <span>2023 · Click to read the story ↗</span>
+    </div>
+    <div class="photo-hover">✦ A snapshot from the archives...</div>
+  </button>
+
+</div>
+
+<!-- Popup for the selected picture -->
+<div class="photo-modal"
+     id="photo-modal"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="modal-title"
+     aria-hidden="true">
+
+  <div class="photo-modal-content">
+    <button class="photo-modal-close"
+            type="button"
+            aria-label="Close picture story">×</button>
+
+    <img id="modal-image" src="" alt="">
+
+    <div class="photo-modal-story">
+      <p class="meta" id="modal-year"></p>
+      <h2 id="modal-title"></h2>
+      <p id="modal-story"></p>
+    </div>
   </div>
 </div>
 </section>
@@ -1015,6 +1201,63 @@ setTimeout(hideLoader, 3500);
 document.getElementById("loader-gif").addEventListener("error", function () {
   this.style.display = "none";
 });
+
+/* CLICKABLE PICTURE STORIES */
+
+const photoModal = document.getElementById("photo-modal");
+const modalImage = document.getElementById("modal-image");
+const modalTitle = document.getElementById("modal-title");
+const modalYear = document.getElementById("modal-year");
+const modalStory = document.getElementById("modal-story");
+const modalClose = document.querySelector(".photo-modal-close");
+
+let lastFocusedPhoto = null;
+
+document.querySelectorAll(".photo-card").forEach(photo => {
+  photo.addEventListener("click", () => {
+    lastFocusedPhoto = photo;
+
+    const image = photo.querySelector("img");
+
+    modalImage.src = image.src;
+    modalImage.alt = image.alt;
+    modalTitle.textContent = photo.dataset.title;
+    modalYear.textContent = photo.dataset.year;
+    modalStory.textContent = photo.dataset.story;
+
+    photoModal.classList.add("open");
+    photoModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    modalClose.focus();
+  });
+});
+
+function closePhotoModal() {
+  photoModal.classList.remove("open");
+  photoModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+
+  if (lastFocusedPhoto) {
+    lastFocusedPhoto.focus();
+  }
+}
+
+modalClose.addEventListener("click", closePhotoModal);
+
+photoModal.addEventListener("click", event => {
+  if (event.target === photoModal) {
+    closePhotoModal();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && photoModal.classList.contains("open")) {
+    closePhotoModal();
+  }
+});
+
+  
 </script>
 
 </body>
